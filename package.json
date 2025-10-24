@@ -1,0 +1,24 @@
+{
+  "name": "sensaraconnecttests",
+  "version": "1.0.0",
+  "description": "Playwright Typescript framework for Sensara connect",
+  "main": "index.js",
+  "scripts": {
+    "env:test": "cross-env test_env=test npx playwright test",
+    "env:acc": "cross-env test_env=acc npx playwright test"
+  },
+  "keywords": [
+    "playwright test runner",
+    "playwright typescript framework"
+  ],
+  "author": "Gayathri Asokh",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^24.9.1",
+    "dotenv": "^17.2.3"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3"
+  }
+}
