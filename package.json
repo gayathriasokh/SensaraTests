@@ -4,8 +4,8 @@
   "description": "Playwright Typescript framework for Sensara connect",
   "main": "index.js",
   "scripts": {
-    "env:test": "cross-env test_env=test npx playwright test",
-    "env:acc": "cross-env test_env=acc npx playwright test"
+    "test": "cross-env test_env=test npx playwright test",
+    "acc": "cross-env test_env=acc npx playwright test"
   },
   "keywords": [
     "playwright test runner",
