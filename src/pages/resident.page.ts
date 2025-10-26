@@ -16,9 +16,5 @@ export default class ResidentPage extends Wrapper{
     await residentLink.first().click();
   }
 
-//    public async residentColumnNames(userName : string){
-    
-//     const nameColumn = await this.findLocator(locators.residentNameColumn);
-//     const sectorColumn =  await this.findLocator(locators.residentSectorColumn);
-//  }
+
 }
