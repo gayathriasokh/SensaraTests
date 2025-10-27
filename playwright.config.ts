@@ -24,7 +24,10 @@ const config: PlaywrightTestConfig = {
     headless: true,
     screenshot: "on",
     video: "on",
-    viewport: { width:1536, height:816 }
+    viewport: {width:1536, height:816},
+    launchOptions: {
+     args: ["--start-maximized"],
+    },
   },
   retries: 0,
   globalSetup: path.resolve(__dirname, "src/utils/globalSetup.ts"),

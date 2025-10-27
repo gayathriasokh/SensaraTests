@@ -1,0 +1,3 @@
+{
+    "expectedHeaders": ["Naam","Zorgsectie","Kamerstatus", "Geschiedenis", "Alarminstellingen"]
+}
