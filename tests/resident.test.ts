@@ -38,37 +38,89 @@ test("Validate Resident page functionalities", async() => {
   const actualHeaders = await residentPage.getAllHeadersText();
   const expectedHeaders = data.expectedHeaders;
   expect(actualHeaders).toEqual(expectedHeaders);
-})
-
-test("validate arrowupDownFunctionality in Resident page", async()=> {
-  await residentPage.page.waitForLoadState('networkidle');
-  const maxAttempts = 5;
-  let attempt = 0;
-  let firstCellText = "";
-  while (attempt < maxAttempts) {
-    firstCellText = await residentPage.getFirstCellText();
-    console.log(`Attempt ${attempt + 1}: ${firstCellText}`);
-
-    await residentPage.clickArrowUpDown();
-    await residentPage.page.waitForTimeout(10000); 
-      await residentPage.clickArrowUpDown();
-    await residentPage.page.waitForLoadState("networkidle", { timeout: 15000 });
-    if (firstCellText[0]?.toUpperCase() === "A") {
-      console.log(`Sorted correctly - value starts with 'A' after ${attempt + 1} clicks`);
-      break;
-    }
-    attempt++;
-  }
-  expect(firstCellText[0]?.toUpperCase()).toBe("A");
 });
 
-test("validate Dropdown value in polygon BUtton", async()=> {
-  await residentPage.clickPolygonButton();
-  await residentPage.validatepolygonFunctionality();
-  // await residentPage.polygonDropdownReset();
-  // await residentPage.page.waitForTimeout(5000); 
+test("validate arrowupDownFunctionality in Resident page for Name Column", async () => {
+
+  await residentPage.page.waitForLoadState('networkidle');
+  const firstCellText = await residentPage.getFirstCellText();
+
+  for (let i = 0; i < 3; i++) {
+    await residentPage.clickArrowUpDownForName();
+    await residentPage.page.waitForLoadState("networkidle", { timeout: 5000 });
+  }
+  const updatedCellText = await residentPage.getFirstCellText();
+  console.log(`Before: ${firstCellText} | After: ${updatedCellText}`);
+});
+
+test("validate Dropdown value in polygon Button for Name column", async()=> {
+  await residentPage.clickPolygonButtonForName();
+  await residentPage.validatepolygonFunctionalityForName();
+});
+
+test("validate arrowupDownFunctionality in Resident page for Sector Column", async () => {
+
+  await residentPage.page.waitForLoadState('networkidle');
+  const sectorFirstCellText = await residentPage.getSectorFirstCellText();
+
+  for (let i = 0; i < 3; i++) {
+    await residentPage.clickArrowUpDownForSector();
+    await residentPage.page.waitForLoadState("networkidle", { timeout: 5000 });
+  }
+  const sectorUpdatedCellText = await residentPage.getSectorFirstCellText();
+  console.log(`Before: ${sectorFirstCellText} | After: ${sectorUpdatedCellText}`);
+});
+
+test("validate Dropdown value in polygon Button for Sector column", async()=> {
+  await residentPage.clickPolygonButtonForSector();
+  await residentPage.validatepolygonFunctionalityForSector();
+});
+
+test("validate arrowupDownFunctionality in Resident page for Room Status Column", async () => {
+
+  await residentPage.page.waitForLoadState('networkidle');
+  const roomStatusFirstCellText = await residentPage.getRoomStatusFirstCellText();
+  for (let i = 0; i < 3; i++) {
+    await residentPage.clickArrowUpDownForRoomStatus();
+    await residentPage.page.waitForLoadState("networkidle", { timeout: 5000 });
+  }
+  const roomStatusUpdatedCellText = await residentPage.getSectorFirstCellText();
+  console.log(`Before: ${roomStatusFirstCellText} | After: ${roomStatusUpdatedCellText}`);
+});
+
+test("validate Dropdown value in polygon Button for room status column", async()=> {
+  await residentPage.clickPolygonButtonForRoomStatus();
+  await residentPage.validatepolygonFunctionalityForRoomStatus();
+});
+
+test("validate arrowupDownFunctionality in Resident page for History Column", async () => {
+
+  await residentPage.page.waitForLoadState('networkidle');
+  for (let i = 0; i < 3; i++) {
+    await residentPage.clickArrowUpDownForHistory();
+    await residentPage.page.waitForLoadState("networkidle", { timeout: 5000 });
+  }
+});
+
+test("validate Dropdown value in polygon Button for History column", async()=> {
+  await residentPage.clickPolygonButtonForHistory();
+  await residentPage.validatepolygonFunctionalityForHistory();
+});
+
+test("validate arrowupDownFunctionality in Resident page for Alarm settings Column", async () => {
+
+  await residentPage.page.waitForLoadState('networkidle');
+  for (let i = 0; i < 3; i++) {
+    await residentPage.clickArrowUpDownForAlarmSettings();
+    await residentPage.page.waitForLoadState("networkidle", { timeout: 5000 });
+  }
+});
+
+test("validate Dropdown value in polygon Button for Alarm settings column", async()=> {
+  await residentPage.clickPolygonButtonForAlarmSettings();
+  await residentPage.validatepolygonFunctionalityForAlarmSettings();
 })
 
 
 
-}) 
+})

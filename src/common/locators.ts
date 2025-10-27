@@ -11,8 +11,10 @@ const Locators = {
  tableHeaders: "//table//thead//tr//th",
  arrowUpDownXpath: "//div[contains(@class,'flex flex-col ml-1')]",
  firstCellText: "//table//tbody//tr[1]//td[1]//span",
+ sectorFirstCellText: "//table//tbody//tr[1]//td[2]//span",
+ roomFirstCellText: "//table//tbody//tr[1]//td[3]//span",
  polygonBtn: "button:has(svg polygon)",
- polygonValue: "//span[contains(text(), 'Alex de Badkamer')]"
+ polygondropdownOptions: "[cmdk-item]"
 
 };
 

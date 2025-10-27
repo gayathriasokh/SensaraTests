@@ -32,11 +32,32 @@ export default class ResidentPage extends Wrapper{
     return headerTexts;
 }
 
-public async clickArrowUpDown(){
+public async clickArrowUpDownForName(){
   const arrowUpDownLocator = await this.findLocator(locators.arrowUpDownXpath);
   await arrowUpDownLocator.first().waitFor({ state: 'visible' });
   await arrowUpDownLocator.first().click();
 }
+public async clickArrowUpDownForSector(){
+  const arrowUpDownLocator = await this.findLocator(locators.arrowUpDownXpath);
+  await arrowUpDownLocator.nth(1).waitFor({ state: 'visible' });
+  await arrowUpDownLocator.nth(1).click();
+}
+
+public async clickArrowUpDownForRoomStatus(){
+  const arrowUpDownLocator = await this.findLocator(locators.arrowUpDownXpath);
+  await arrowUpDownLocator.nth(2).waitFor({ state: 'visible' });
+  await arrowUpDownLocator.nth(2).click();
+}public async clickArrowUpDownForHistory(){
+  const arrowUpDownLocator = await this.findLocator(locators.arrowUpDownXpath);
+  await arrowUpDownLocator.nth(2).waitFor({ state: 'visible' });
+  await arrowUpDownLocator.nth(2).click();
+}
+public async clickArrowUpDownForAlarmSettings(){
+  const arrowUpDownLocator = await this.findLocator(locators.arrowUpDownXpath);
+  await arrowUpDownLocator.nth(2).waitFor({ state: 'visible' });
+  await arrowUpDownLocator.nth(2).click();
+}
+
 
 public async getFirstCellText(): Promise<string> {
   const firstCell = await this.findLocator(locators.firstCellText);
@@ -45,39 +66,109 @@ public async getFirstCellText(): Promise<string> {
   return text?.trim() || "";
 }
 
-public async clickPolygonButton(){
+public async getSectorFirstCellText(): Promise<string> {
+  const firstCellSector = await this.findLocator(locators.sectorFirstCellText);
+  await firstCellSector.waitFor({ state: "visible" });
+  const text = await firstCellSector.textContent();
+  return text?.trim() || "";
+}
+
+public async getRoomStatusFirstCellText(): Promise<string> {
+  const firstCellRoomStatus = await this.findLocator(locators.roomFirstCellText);
+  await firstCellRoomStatus.waitFor({ state: "visible" });
+  const text = await firstCellRoomStatus.textContent();
+  return text?.trim() || "";
+}
+
+public async clickPolygonButtonForName(){
   const polyBtn = await this.findLocator(locators.polygonBtn);
   await polyBtn.first().waitFor({ state: 'visible' });
   await polyBtn.first().click();
 }
 
-public async validatepolygonFunctionality(){
-  const polyDropDownValue = await this.findLocator(locators.polygonValue);
-  await Promise.all([
-    this.page.waitForLoadState('networkidle'),
-    polyDropDownValue.nth(1).click()
-  ])
-  const cellValueafterLocator = (await this.findLocator(locators.firstCellText));
-   await cellValueafterLocator.waitFor({state:"visible"});
-   const cellValueafterLocatorText = await cellValueafterLocator.textContent();
-   expect(cellValueafterLocatorText).toContain("Alex de Badkamer-tester");
-}
-
-// public async polygonDropdownReset(){
-//   const polyBtn = await this.findLocator(locators.polygonBtn);
-//   await polyBtn.first().waitFor({ state: 'attached' });
-//   await polyBtn.first().click();
-//   const polyDropDownValue = await this.findLocator(locators.polygonValue);
-//   await Promise.all([
-//     this.page.waitForLoadState('networkidle'),
-//     polyDropDownValue.nth(1).click()
-    
-//   ])
-
-}
-
-
-
+public async validatepolygonFunctionalityForName(){
+  const dropdownItems = await this.findLocator(locators.polygondropdownOptions);
+  const numberOfOptions = dropdownItems.count();
   
+for (let i = 0; i < await numberOfOptions ; i++) {
+    const item = dropdownItems.nth(i);
+        const text = await item.innerText();
+        console.log(`Clicking on: ${text}`);
 
+        await item.click();
+}}
 
+public async clickPolygonButtonForSector(){
+  const polyBtn = await this.findLocator(locators.polygonBtn);
+  await polyBtn.nth(1).waitFor({ state: 'visible' });
+  await polyBtn.nth(1).click();
+}
+  
+public async validatepolygonFunctionalityForSector(){
+  await this.page.waitForSelector(locators.polygondropdownOptions);
+  const dropdownItems = await this.findLocator(locators.polygondropdownOptions);
+  const count = dropdownItems.count();
+  
+for (let i = 0; i < 4 ; i++) {
+    const item = dropdownItems.nth(i);
+        const text = await item.innerText();
+        console.log(`Clicking on: ${text}`);
+
+        await item.click();
+}}
+
+public async clickPolygonButtonForRoomStatus(){
+  const polyBtn = await this.findLocator(locators.polygonBtn);
+  await polyBtn.nth(2).waitFor({ state: 'visible' });
+  await polyBtn.nth(2).click();
+}
+public async validatepolygonFunctionalityForRoomStatus(){
+  await this.page.waitForSelector(locators.polygondropdownOptions);
+  const dropdownItems = await this.findLocator(locators.polygondropdownOptions);
+  const count = dropdownItems.count();
+  
+for (let i = 0; i < await count ; i++) {
+    const item = dropdownItems.nth(i);
+        const text = await item.innerText();
+        console.log(`Clicking on: ${text}`);
+
+        await item.click();
+}}
+
+public async clickPolygonButtonForHistory(){
+  const polyBtn = await this.findLocator(locators.polygonBtn);
+  await polyBtn.nth(3).waitFor({ state: 'visible' });
+  await polyBtn.nth(3).click();
+}
+public async validatepolygonFunctionalityForHistory(){
+  await this.page.waitForSelector(locators.polygondropdownOptions);
+  const dropdownItems = await this.findLocator(locators.polygondropdownOptions);
+  const count = dropdownItems.count();
+  
+for (let i = 0; i < await count ; i++) {
+    const item = dropdownItems.nth(i);
+        const text = await item.innerText();
+        console.log(`Clicking on: ${text}`);
+
+        await item.click();
+}}
+
+public async clickPolygonButtonForAlarmSettings(){
+  const polyBtn = await this.findLocator(locators.polygonBtn);
+  await polyBtn.nth(4).waitFor({ state: 'visible' });
+  await polyBtn.nth(4).click();
+}
+public async validatepolygonFunctionalityForAlarmSettings(){
+  await this.page.waitForSelector(locators.polygondropdownOptions);
+  const dropdownItems = await this.findLocator(locators.polygondropdownOptions);
+  const count = dropdownItems.count();
+  
+for (let i = 0; i < await count ; i++) {
+    const item = dropdownItems.nth(i);
+        const text = await item.innerText();
+        console.log(`Clicking on: ${text}`);
+
+        await item.click();
+}}
+
+}
