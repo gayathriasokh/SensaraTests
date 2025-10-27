@@ -57,16 +57,26 @@ public async validatepolygonFunctionality(){
     this.page.waitForLoadState('networkidle'),
     polyDropDownValue.nth(1).click()
   ])
-  // const headerLocator = await this.findLocator(locators.headerText);
-  // headerLocator.click();
-  // await this.page.waitForLoadState('networkidle');
-
   const cellValueafterLocator = (await this.findLocator(locators.firstCellText));
    await cellValueafterLocator.waitFor({state:"visible"});
    const cellValueafterLocatorText = await cellValueafterLocator.textContent();
    expect(cellValueafterLocatorText).toContain("Alex de Badkamer-tester");
 }
+
+// public async polygonDropdownReset(){
+//   const polyBtn = await this.findLocator(locators.polygonBtn);
+//   await polyBtn.first().waitFor({ state: 'attached' });
+//   await polyBtn.first().click();
+//   const polyDropDownValue = await this.findLocator(locators.polygonValue);
+//   await Promise.all([
+//     this.page.waitForLoadState('networkidle'),
+//     polyDropDownValue.nth(1).click()
+    
+//   ])
+
 }
+
+
 
   
 

@@ -65,7 +65,8 @@ test("validate arrowupDownFunctionality in Resident page", async()=> {
 test("validate Dropdown value in polygon BUtton", async()=> {
   await residentPage.clickPolygonButton();
   await residentPage.validatepolygonFunctionality();
-  
+  // await residentPage.polygonDropdownReset();
+  // await residentPage.page.waitForTimeout(5000); 
 })
 
 
