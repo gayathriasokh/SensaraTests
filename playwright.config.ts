@@ -21,7 +21,7 @@ const config: PlaywrightTestConfig = {
   timeout: 100000,
   reporter: "html",
   use: {
-    headless: true,
+    headless: false,
     screenshot: "on",
     video: "on",
     viewport: {width:1536, height:816}
