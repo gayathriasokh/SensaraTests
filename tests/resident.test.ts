@@ -141,7 +141,6 @@ test("Fill form values after clicking the edit button ", async()=> {
 });
 
 test("delete Button functionality", async()=> {
-   await residentPage.page.waitForLoadState("networkidle", { timeout: 10000 });
   await residentPage.validateDeleteButtonFunctionality();
   await residentPage.page.waitForLoadState("networkidle", { timeout: 1000 });
 })
