@@ -17,17 +17,15 @@ const config: PlaywrightTestConfig = {
     }
 
   ],
+  workers: 1, 
   testMatch: ["tests/**/*.test.ts"],
   timeout: 100000,
   reporter: "html",
   use: {
-    headless: true,
+    headless: false,
     screenshot: "on",
     video: "on",
-    viewport: {width:1536, height:816},
-    launchOptions: {
-     args: ["--start-maximized"],
-    },
+    viewport: {width:1536, height:816}
   },
   retries: 0,
   globalSetup: path.resolve(__dirname, "src/utils/globalSetup.ts"),

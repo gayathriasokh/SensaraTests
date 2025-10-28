@@ -8,14 +8,33 @@ const Locators = {
  residentSectorColumn: "//button[.//span[normalize-space(text())='Sector']]",
  tableBeforeHeadersXpath: "//table//thead//tr//th[",
  tableAfterHeadersXpath: "]//div//button[1]//span//span",
- tableHeaders: "//table//thead//tr//th",
+ tableHeaders: "//table//thead//tr//th//span//span",
  arrowUpDownXpath: "//div[contains(@class,'flex flex-col ml-1')]",
  firstCellText: "//table//tbody//tr[1]//td[1]//span",
  sectorFirstCellText: "//table//tbody//tr[1]//td[2]//span",
  roomFirstCellText: "//table//tbody//tr[1]//td[3]//span",
  polygonBtn: "button:has(svg polygon)",
- polygondropdownOptions: "[cmdk-item]"
-
+ polygondropdownOptions: "[cmdk-item]",
+ residentColumns: "//button[@id='radix-_r_f_' and @type='button']",
+ columnBtnXpath: "//button[text()='Kolommen']",
+ clientNumberColumnXpath: "//div[span[text()='Klantnummer']]",
+ addressColumnXpath: "//div[span[text()='Address']]",
+ privacyModeXpath: "//div[span[text()='Privacy Mode']]",
+ activeFiltersXpath: "//div[span[text()='Actieve filters']]",
+ resetVisibilityButton: "//button[text()='Zichtbaarheid resetten']",
+ resetFiltersXpath:"//button[text()='Filters resetten']",
+ editButtonXpath: "//button[@title='Bewerken']",
+ editBoxHeaderXpath: "//h2[text()='Cliënt bewerken']",
+ formlabelCSS: "#resourceForm label",
+ nameDataForm: "//input[@name='name']",
+ clientNumberDataForm: "//input[@name='externalId']",
+ streetDataForm: "//input[@name='street']",
+ houseNumberDataForm: "//input[@name='number']",
+ postalCodeDataForm: "//input[@name='postalCode']",
+ cityDataForm: "//input[@name='city']",
+ saveButton: "//button[text()='Opslaan']",
+ deleteButtonXpath: "button[title='Verwijderen']",
+ toDeleteBtnXpath: "//button[text()='Verwijderen']"
 };
 
 export default Locators;

@@ -1,4 +1,12 @@
 {
-    "expectedHeaders": ["Naam","Zorgsectie","Kamerstatus", "Geschiedenis", "Alarminstellingen"]
+    "expectedHeaders": ["Naam","Zorgsectie","Kamerstatus", "Geschiedenis", "Alarminstellingen"],
+    "expectedHeadersAfterColumnsOptions": ["Naam","Zorgsectie","Kamerstatus", "Geschiedenis", "Alarminstellingen","Klantnummer","Address","Privacy Mode"],
+    "expectedLabels": ["Naam *","Klantnummer","Privacy Mode *","Straat","Huisnummer","Postcode","Plaats"],
+    "name": "GayathriAsokh",
+    "clientNumber" : "1234",
+    "street" : "wegastraat",
+    "houseNumber" : "5",
+    "postalCode": "2516AK",
+    "city" : "Hague"
 
 }

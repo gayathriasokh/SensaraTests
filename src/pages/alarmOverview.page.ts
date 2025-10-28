@@ -10,4 +10,9 @@ export default class AlarmOverviewPage extends Wrapper{
         super(page);
         this.common = new commonpage(page);
     }
+    public async clickAlarmOverviewLInk(){
+    const residentLink = await this.findLocator(locators.residentLink);
+    await residentLink.waitFor({state:"attached"});
+    await residentLink.first().click();
+  }
 }

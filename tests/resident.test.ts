@@ -119,8 +119,31 @@ test("validate arrowupDownFunctionality in Resident page for Alarm settings Colu
 test("validate Dropdown value in polygon Button for Alarm settings column", async()=> {
   await residentPage.clickPolygonButtonForAlarmSettings();
   await residentPage.validatepolygonFunctionalityForAlarmSettings();
+});
+
+test("Validate columns Dropdown in resident page", async()=> {
+  await residentPage.validateColumnsDropdownFunctionalityInResidentsPage();
+  await residentPage.page.waitForLoadState("networkidle", { timeout: 10000 });
+  await residentPage.getAllHeadersTextAfterColumnsSelection();
+  await residentPage.validateResetFiltersFunctionality();
+  await residentPage.resetVisibilityFunctionality();
+});
+
+test("validate functionality of Edit button in Resident page", async()=> {
+  await residentPage.validateEditButtonFunctionality();
+  const expectedLabelsNames = data.expectedLabels;
+  const actualLabelNames = await residentPage.getAllLabelNames();
+  expect(actualLabelNames).toEqual(expectedLabelsNames);
+});
+
+test("Fill form values after clicking the edit button ", async()=> {
+  await residentPage.fillFormData(data.name, data.clientNumber, data.street, data.houseNumber, data.postalCode,data.city);
+});
+
+test("delete Button functionality", async()=> {
+   await residentPage.page.waitForLoadState("networkidle", { timeout: 10000 });
+  await residentPage.validateDeleteButtonFunctionality();
+  await residentPage.page.waitForLoadState("networkidle", { timeout: 1000 });
 })
-
-
 
 })
