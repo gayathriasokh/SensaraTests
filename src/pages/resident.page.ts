@@ -263,6 +263,7 @@ public async fillFormData(nameDataValue:string,clientNumberValue:string,streetVa
   await postalCodeData.fill(postalCodeValue);
   await cityData.waitFor({state:"attached"});
   await cityData.fill(cityValue);
+  await this.page.waitForTimeout(5000);
   await saveBtn.waitFor({state:"attached"});
   await saveBtn.click();
 }

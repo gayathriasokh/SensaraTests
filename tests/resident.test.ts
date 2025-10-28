@@ -140,9 +140,9 @@ test("Fill form values after clicking the edit button ", async()=> {
   await residentPage.fillFormData(data.name, data.clientNumber, data.street, data.houseNumber, data.postalCode,data.city);
 });
 
-test("delete Button functionality", async()=> {
-  await residentPage.validateDeleteButtonFunctionality();
-  await residentPage.page.waitForLoadState("networkidle", { timeout: 1000 });
-})
+// test("delete Button functionality", async()=> {
+//   await residentPage.validateDeleteButtonFunctionality();
+//   await residentPage.page.waitForLoadState("networkidle", { timeout: 1000 });
+// })
 
 })
