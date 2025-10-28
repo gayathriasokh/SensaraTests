@@ -17,7 +17,6 @@ const config: PlaywrightTestConfig = {
     }
 
   ],
-  workers: 1, 
   testMatch: ["tests/**/*.test.ts"],
   timeout: 100000,
   reporter: "html",
