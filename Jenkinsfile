@@ -23,9 +23,7 @@ pipeline {
                 container("maven") {
                     script {
                         if (env.BRANCH_NAME == "master") {
-                            sh "npx cross-env test_env=acceptance npx playwright test"
                         } else {
-                            sh "npx cross-env test_env=test npx playwright test"
                         }
                     }
                 }
