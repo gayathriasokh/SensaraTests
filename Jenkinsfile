@@ -41,6 +41,7 @@ podTemplate(namespace: eu.sensara.Constants.k8sWorkersNamespace, label: podLabel
             try {
                 container("node") {
                     confirm(this, "Continue ?")
+                    checkout scm
                     sh "npm install"
                     confirm(this, "Continue ?")
                     sh "yes | npx playwright --version"
