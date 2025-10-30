@@ -44,7 +44,7 @@ podTemplate(namespace: eu.sensara.Constants.k8sWorkersNamespace, label: podLabel
                     checkout scm
                     sh "npm install"
                     confirm(this, "Continue ?")
-                    sh "yes | npx playwright --version"
+                    sh "npx playwright install"
                     confirm(this, "Continue ?")
                     stage("Test") {
                         sh "npx playwright test"
