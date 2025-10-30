@@ -20,7 +20,7 @@ pipeline {
     stages {
         stage("Run Tests") {
             steps {
-                container("maven") {
+                container("nodejs") {
                     script {
                         if (env.BRANCH_NAME == "master") {
                             sh "mvn -B -Dspring.profiles.active=acc clean test"
