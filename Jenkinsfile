@@ -41,9 +41,8 @@ podTemplate(namespace: eu.sensara.Constants.k8sWorkersNamespace, label: podLabel
             try {
                 container("node") {
                     checkout scm
+                    sh "apt install firefox"
                     sh "node --version"
-                    sh "npm --version"
-                    sh "npm install"
                     sh "npm --version"
                     confirm(this, "Continue ?")
                     sh "npx playwright install"

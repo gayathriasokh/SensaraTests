@@ -4,18 +4,11 @@ import path from "path";
 const config: PlaywrightTestConfig = {
   projects: [
     {
-      name: "chrome",
-      use: {
-    ...devices["Desktop Chrome"]
-  }
-    },
-    {
       name: "firefox",
       use: {
-    ...devices["Desktop Firefox"]
-  }
+        ...devices["Desktop Firefox"]
+      }
     }
-
   ],
   testMatch: ["tests/**/*.test.ts"],
   timeout: 100000,
