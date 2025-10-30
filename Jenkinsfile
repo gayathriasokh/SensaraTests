@@ -23,9 +23,12 @@ pipeline {
                 container("maven") {
                     script {
                         if (env.BRANCH_NAME == "master") {
+                            sh "mvn -B -Dspring.profiles.active=acc clean test"
                         } else {
+                            sh "mvn -B -Dspring.profiles.active=test clean test"
                         }
                     }
+                    junit '**/surefire-reports/TEST-*.xml'
                 }
             }
         }
