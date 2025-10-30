@@ -33,7 +33,7 @@ def podTemplate = """
 def podLabelBuilder = eu.sensara.PipelineUtils.generateBuilderPodLabel(scrambledName)
 
 
-podTemplate(namespace: eu.sensara.Constants.k8sWorkersNamespace, label: podLabelBuilder, yaml: podLabelBuilderYaml) {
+podTemplate(namespace: eu.sensara.Constants.k8sWorkersNamespace, label: podLabelBuilder, yaml: podTemplate) {
     node(podLabelBuilder) {
         stage("Building") {
             try {
