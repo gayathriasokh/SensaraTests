@@ -22,7 +22,9 @@ pipeline {
             steps {
                 container("playwright") {
                     script {
-                        sh "sleep 10m"
+                    sh "yes | npx playwright --version"
+                    sh "npx playwright --version"
+                        //sh "sleep 10m"
                         //sh "npx cross-env test_env=test npx playwright test"
                         sh "npx playwright test"
                         if (env.BRANCH_NAME == "master") {
