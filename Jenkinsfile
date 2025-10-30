@@ -22,13 +22,11 @@ pipeline {
             steps {
                 container("nodejs") {
                     script {
+                        sh "npx cross-env test_env=test npx playwright test"
                         if (env.BRANCH_NAME == "master") {
-                            sh "mvn -B -Dspring.profiles.active=acc clean test"
-                        } else {
-                            sh "mvn -B -Dspring.profiles.active=test clean test"
+                            sh "npx cross-env test_env=acceptance npx playwright test"
                         }
                     }
-                    junit '**/surefire-reports/TEST-*.xml'
                 }
             }
         }
