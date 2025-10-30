@@ -18,7 +18,7 @@ return """
    serviceAccountName: jenkins
    containers:
    - name: node
-     image: node:hydrogen-alpine3.21
+     image: eclipse-temurin:21.0.5_11-jre-jammy
      command:
        - cat
      tty: true
