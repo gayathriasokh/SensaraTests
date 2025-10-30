@@ -1,3 +1,5 @@
+@Library("jenkins-pipeline-util") _
+
 String project = "angular-polygon-144011"
 def podLabel = "jenkins-worker-conntst-${UUID.randomUUID().toString()}"
 
@@ -21,10 +23,10 @@ pipeline {
         stage("Run Tests") {
             steps {
                 container("playwright") {
-                    script {
+                    script {confirm(script, "Continue??")
                     sh "yes | npx playwright --version"
                     sh "npx playwright --version"
-                        //sh "sleep 10m"
+                    sh "sleep 10m"
                         //sh "npx cross-env test_env=test npx playwright test"
                         sh "npx playwright test"
                         if (env.BRANCH_NAME == "master") {
@@ -44,4 +46,14 @@ pipeline {
             }
         }
     } */
+}
+
+def confirm(script, String text) {
+    node("master") {
+        stage("Confirm from the console output!") {
+            script.timeout(time: 1, unit: "DAYS") {
+                script.input "$text"
+            }
+        }
+    }
 }
