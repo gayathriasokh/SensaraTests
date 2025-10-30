@@ -18,7 +18,7 @@ return """
    serviceAccountName: jenkins
    containers:
    - name: node
-     image: mcr.microsoft.com/playwright:v1.56.1-noble
+     image: node:hydrogen-alpine3.21
      command:
        - cat
      tty: true
@@ -40,11 +40,13 @@ podTemplate(namespace: eu.sensara.Constants.k8sWorkersNamespace, label: podLabel
         stage("Building") {
             try {
                 container("node") {
-                    confirm(this, "Continue ?")
                     checkout scm
-                    //sh "npm install"
+                    sh "node --version"
+                    sh "npm --version"
+                    sh "npm install"
+                    sh "npm --version"
                     confirm(this, "Continue ?")
-                    //sh "npx playwright install"
+                    sh "npx playwright install"
                     sh "npx playwright --version"
                     confirm(this, "Continue ?")
                     stage("Test") {
