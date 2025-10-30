@@ -40,11 +40,11 @@ podTemplate(namespace: eu.sensara.Constants.k8sWorkersNamespace, label: podLabel
         stage("Building") {
             try {
                 container("node") {
-                    confirm(script, "Continue ?")
+                    confirm(this, "Continue ?")
                     sh "npm install"
-                    confirm(script, "Continue ?")
+                    confirm(this, "Continue ?")
                     sh "yes | npx playwright --version"
-                    confirm(script, "Continue ?")
+                    confirm(this, "Continue ?")
                     stage("Test") {
                         sh "npx playwright test"
                     }
