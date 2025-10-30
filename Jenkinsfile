@@ -1,66 +1,44 @@
+String project = "angular-polygon-144011"
+def podLabel = "jenkins-worker-apitst-${UUID.randomUUID().toString()}"
+
 pipeline {
-    agent any
-
-    environment {
-        NODE_ENV = 'ci'
+    agent {
+        kubernetes {
+            cloud "kubernetes"
+            namespace "jenkins-workers"
+            label "${podLabel}"
+            yamlFile "jenkins-worker-pod.yaml"
+        }
     }
-
-    tools {
-        nodejs 'node'
+    triggers {
+        cron((BRANCH_NAME == "master" || BRANCH_NAME == "develop") ? "@daily" : "")
     }
-
+    options {
+        disableConcurrentBuilds()
+        skipStagesAfterUnstable()
+    }
     stages {
-        stage('Checkout') {
+        stage("Run Tests") {
             steps {
-                checkout scm
-            }
-        }
-
-        stage('Install Dependencies') {
-            steps {
-                echo 'Installing npm dependencies...'
-                sh 'npm ci'
-            }
-        }
-
-        stage('Install Browsers') {
-            steps {
-                echo 'Installing Playwright browsers...'
-                sh 'npx playwright install --with-deps'
-            }
-        }
-
-        stage('Run Tests - Test Environment') {
-            steps {
-                echo 'Running Playwright tests in test environment'
-                sh 'npx cross-env test_env=test npx playwright test'
-            }
-        }
-
-        stage('Run Tests - Acceptance Environment') {
-            steps {
-                echo 'Running Playwright tests in acceptance environment'
-                sh 'npx cross-env test_env=acc npx playwright test'
-            }
-        }
-
-        stage('Archive Report') {
-            steps {
-                echo 'Archiving Playwright HTML report'
-                archiveArtifacts artifacts: 'playwright-report/**', fingerprint: true
+                container("maven") {
+                    script {
+                        if (env.BRANCH_NAME == "master") {
+                            sh "npx cross-env test_env=acceptance npx playwright test"
+                        } else {
+                            sh "npx cross-env test_env=test npx playwright test"
+                        }
+                    }
+                }
             }
         }
     }
-
     post {
-        always {
-            echo 'Cleaning up'
-        }
-        success {
-            echo 'Pipeline completed successfully'
-        }
         failure {
-            echo 'Pipeline failed'
+            script {
+                if (env.BRANCH_NAME == "develop" || env.BRANCH_NAME == "master") {
+                    slackSend (color: '#FF0000', message: "TESTS FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})", channel: "jenkins-master-builds")
+                }
+            }
         }
     }
 }
