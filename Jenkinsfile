@@ -3,7 +3,8 @@
 
 def scrambledName = "conntests"  // contracted (yet unique within the Sensara-environment) name of the project. Needed for Jenkins
 
-def podTemplate = """
+static def podCustomTemplate(){
+return """
  apiVersion: v1
  kind: Pod
  spec:
@@ -29,11 +30,12 @@ def podTemplate = """
          cpu: "2"
          memory: "4Gi"
  """
+}
 
 def podLabelBuilder = eu.sensara.PipelineUtils.generateBuilderPodLabel(scrambledName)
 
 
-podTemplate(namespace: eu.sensara.Constants.k8sWorkersNamespace, label: podLabelBuilder, yaml: podTemplate) {
+podTemplate(namespace: eu.sensara.Constants.k8sWorkersNamespace, label: podLabelBuilder, yaml: podCustomTemplate() {
     node(podLabelBuilder) {
         stage("Building") {
             try {
