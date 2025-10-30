@@ -1,5 +1,5 @@
 String project = "angular-polygon-144011"
-def podLabel = "jenkins-worker-apitst-${UUID.randomUUID().toString()}"
+def podLabel = "jenkins-worker-conntst-${UUID.randomUUID().toString()}"
 
 pipeline {
     agent {
