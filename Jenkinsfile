@@ -35,7 +35,7 @@ return """
 def podLabelBuilder = eu.sensara.PipelineUtils.generateBuilderPodLabel(scrambledName)
 
 
-podTemplate(namespace: eu.sensara.Constants.k8sWorkersNamespace, label: podLabelBuilder, yaml: podCustomTemplate() {
+podTemplate(namespace: eu.sensara.Constants.k8sWorkersNamespace, label: podLabelBuilder, yaml: podCustomTemplate()) {
     node(podLabelBuilder) {
         stage("Building") {
             try {
