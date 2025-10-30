@@ -10,15 +10,16 @@ spec:
     effect: "NoSchedule"
   serviceAccountName: jenkins
   containers:
-  - name: nodejs
-    image: node:hydrogen-alpine3.21
+  - name: playwright
+    image: mcr.microsoft.com/playwright:v1.56.1-noble
     command:
       - cat
     tty: true
     resources:
       requests:
         cpu: "1"
+        memory: "2Gi"
       limits:
-        memory: "3Gi"
         cpu: "2"
+        memory: "4Gi"
 

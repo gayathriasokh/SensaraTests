@@ -20,7 +20,7 @@ pipeline {
     stages {
         stage("Run Tests") {
             steps {
-                container("nodejs") {
+                container("playwright") {
                     script {
                         sh "npx cross-env test_env=test npx playwright test"
                         if (env.BRANCH_NAME == "master") {
@@ -31,7 +31,7 @@ pipeline {
             }
         }
     }
-    post {
+    /* post {
         failure {
             script {
                 if (env.BRANCH_NAME == "develop" || env.BRANCH_NAME == "master") {
@@ -39,5 +39,5 @@ pipeline {
                 }
             }
         }
-    }
+    } */
 }
