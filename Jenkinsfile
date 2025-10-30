@@ -45,6 +45,10 @@ podTemplate(namespace: eu.sensara.Constants.k8sWorkersNamespace, label: podLabel
                     sh "node --version"
                     sh "npm --version"
                     confirm(this, "Continue ?")
+                    sh "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash"
+                    sh """\. "$HOME/.nvm/nvm.sh" """
+                    sh "nvm install 24"
+                    sh "npm install"
                     sh "npx playwright install"
                     sh "npx playwright --version"
                     confirm(this, "Continue ?")
