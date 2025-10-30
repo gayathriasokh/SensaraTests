@@ -40,8 +40,8 @@ podTemplate(namespace: eu.sensara.Constants.k8sWorkersNamespace, label: podLabel
         stage("Building") {
             try {
                 container("node") {
+                    confirm(this, "Continue ?")
                     checkout scm
-                    sh "apt install firefox"
                     sh "node --version"
                     sh "npm --version"
                     confirm(this, "Continue ?")
